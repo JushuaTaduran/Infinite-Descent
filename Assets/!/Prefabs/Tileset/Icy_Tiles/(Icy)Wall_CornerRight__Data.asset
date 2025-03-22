@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f568d4c67ca19f54ab0935b008aa6291, type: 3}
+  m_Name: (Icy)Wall_CornerRight__Data
+  m_EditorClassIdentifier: 
+  inputImages:
+  - {fileID: 21300000, guid: 7c78a3627697e894c8377c4c0d8680f8, type: 3}
+  - {fileID: 21300000, guid: 4d728affe9970464a9b244b1428966c6, type: 3}
+  - {fileID: 21300000, guid: d82e50f905ea2cb4a9329511e8ffc37e, type: 3}
+  sprite: {fileID: 0}
+  sortingOrder: 1
+  sortingLayerName: Default

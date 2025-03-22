@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Portal
+  - Wall
+  - Floor
+  - SpawnPoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -11,12 +16,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - minimapLayer
+  - floorLayer
+  - wallLayer
+  - Portal
+  - PlayerLayer
+  - EnemyLayer
   - 
   - 
   - 
@@ -43,4 +48,22 @@ TagManager:
     locked: 0
   - name: Floors
     uniqueID: 90400537
+    locked: 0
+  - name: MidGround
+    uniqueID: 3346718031
+    locked: 0
+  - name: Environment
+    uniqueID: 2207211309
+    locked: 0
+  - name: Mobs
+    uniqueID: 2432972337
+    locked: 0
+  - name: Player
+    uniqueID: 832636557
+    locked: 0
+  - name: Portal
+    uniqueID: 3179836909
+    locked: 0
+  - name: UI
+    uniqueID: 2551105539
     locked: 0

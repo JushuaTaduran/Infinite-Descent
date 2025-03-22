@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f568d4c67ca19f54ab0935b008aa6291, type: 3}
+  m_Name: (Icy)Floor_03_Data
+  m_EditorClassIdentifier: 
+  inputImages:
+  - {fileID: 21300000, guid: 2ad8d0e6d1ffbb745bc429eccac19743, type: 3}
+  - {fileID: 21300000, guid: 9d6ebd1c18c220d4682a2562929d3cc7, type: 3}
+  - {fileID: 21300000, guid: 7ff027b9663b30d4cb68047df3300274, type: 3}
+  sprite: {fileID: 0}
+  sortingOrder: 0
+  sortingLayerName: Default

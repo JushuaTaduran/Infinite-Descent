@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class WFCTileGeneration : MonoBehaviour
@@ -14,52 +13,88 @@ public class WFCTileGeneration : MonoBehaviour
     public Cell cellObj;
 
     private RoomManager roomManager;
-    int iterations = 0;
+    private MixRoomManager mixRoomManager;
+    private GEDRoomManager gedRoomManager;
+    public int iterations = 0;
 
     void Awake()
     {
         gridComponents = new List<Cell>();
         roomManager = FindObjectOfType<RoomManager>();
+        mixRoomManager = FindObjectOfType<MixRoomManager>();
+        gedRoomManager = FindObjectOfType<GEDRoomManager>();
+
+        if (roomManager == null && mixRoomManager == null && gedRoomManager == null)
+        {
+            Debug.LogError("❌ Neither RoomManager nor MixRoomManager found in the scene!");
+            return;
+        }
+
         StartCoroutine(WaitForGenerationComplete());
     }
 
     IEnumerator WaitForGenerationComplete()
     {
-        // Wait until generationComplete is true
-        while (!roomManager.generationComplete)
+        bool generationComplete = false;
+
+        while (!generationComplete)
         {
+            if (roomManager != null)
+            {
+                generationComplete = roomManager.generationComplete;
+            }
+            else if (mixRoomManager != null)
+            {
+                generationComplete = mixRoomManager.generationComplete;
+            }
+            else if (gedRoomManager != null)
+            {
+                generationComplete = gedRoomManager.generationComplete;
+            }
+
             yield return null;
         }
 
-        // Initialize the grid once generation is complete
         InitializeGrid();
     }
 
     void InitializeGrid()
     {
-        // Get the position of the GameObject holding this script and add 0.5 to x and y
         Vector2 startPosition = (Vector2)transform.position + new Vector2(0.5f, 0.5f);
 
         for (int y = 0; y < roomHeight; y++)
         {
             for (int x = 0; x < roomWidth; x++)
             {
-                // Offset each cell's position based on the startPosition
                 Vector2 cellPosition = startPosition + new Vector2(x, y);
-
-                // Instantiate the cell at the calculated position
                 Cell newCell = Instantiate(cellObj, cellPosition, Quaternion.identity);
-
-                // Initialize the cell with default properties
                 newCell.CreateCell(false, tileObjects);
 
-                // Add the cell to the gridComponents list
+                SpriteRenderer spriteRenderer = newCell.GetComponentInChildren<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.sortingOrder = 1;
+                    spriteRenderer.sortingLayerName = "Default";
+                }
+
                 gridComponents.Add(newCell);
             }
         }
 
-        // Start the Wave Function Collapse process
         StartCoroutine(CheckEntropy());
+    }
+
+    public void ClearGrid()
+    {
+        foreach (var cell in gridComponents)
+        {
+            if (cell != null)
+            {
+                Destroy(cell.gameObject);
+            }
+        }
+        gridComponents.Clear();
+        iterations = 0;
     }
 
     IEnumerator CheckEntropy()
@@ -130,7 +165,6 @@ public class WFCTileGeneration : MonoBehaviour
                         options.Add(t);
                     }
 
-                    //update above
                     if (y > 0)
                     {
                         Cell up = gridComponents[x + (y - 1) * roomWidth];
@@ -141,13 +175,12 @@ public class WFCTileGeneration : MonoBehaviour
                             var valOption = Array.FindIndex(tileObjects, obj => obj == possibleOptions);
                             var valid = tileObjects[valOption].upNeighbours;
 
-                            validOptions = validOptions.Concat(valid).ToList();
+                            validOptions.AddRange(valid);
                         }
 
                         CheckValidity(options, validOptions);
                     }
 
-                    //update right
                     if (x < roomWidth - 1)
                     {
                         Cell right = gridComponents[x + 1 + y * roomWidth];
@@ -158,13 +191,12 @@ public class WFCTileGeneration : MonoBehaviour
                             var valOption = Array.FindIndex(tileObjects, obj => obj == possibleOptions);
                             var valid = tileObjects[valOption].leftNeighbours;
 
-                            validOptions = validOptions.Concat(valid).ToList();
+                            validOptions.AddRange(valid);
                         }
 
                         CheckValidity(options, validOptions);
                     }
 
-                    //look down
                     if (y < roomHeight - 1)
                     {
                         Cell down = gridComponents[x + (y + 1) * roomWidth];
@@ -175,13 +207,12 @@ public class WFCTileGeneration : MonoBehaviour
                             var valOption = Array.FindIndex(tileObjects, obj => obj == possibleOptions);
                             var valid = tileObjects[valOption].downNeighbours;
 
-                            validOptions = validOptions.Concat(valid).ToList();
+                            validOptions.AddRange(valid);
                         }
 
                         CheckValidity(options, validOptions);
                     }
 
-                    //look left
                     if (x > 0)
                     {
                         Cell left = gridComponents[x - 1 + y * roomWidth];
@@ -192,7 +223,7 @@ public class WFCTileGeneration : MonoBehaviour
                             var valOption = Array.FindIndex(tileObjects, obj => obj == possibleOptions);
                             var valid = tileObjects[valOption].rightNeighbours;
 
-                            validOptions = validOptions.Concat(valid).ToList();
+                            validOptions.AddRange(valid);
                         }
 
                         CheckValidity(options, validOptions);
@@ -217,7 +248,6 @@ public class WFCTileGeneration : MonoBehaviour
         {
             StartCoroutine(CheckEntropy());
         }
-
     }
 
     void CheckValidity(List<Tile> optionList, List<Tile> validOption)

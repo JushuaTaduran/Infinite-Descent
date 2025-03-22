@@ -6,12 +6,14 @@ public class RoomManager : MonoBehaviour
 {
     [SerializeField] GameObject squareRoomPrefab;
     [SerializeField] GameObject crossRoomPrefab;
+    [SerializeField] GameObject spawnRoomPrefab;
+    [SerializeField] GameObject bossRoomPrefab;
     [SerializeField] private int maxRooms = 15;
     [SerializeField] private int minRooms = 10;
+    [SerializeField] private int minDistanceBetweenSpecialRooms = 5; // Minimum distance between SpawnRoom and BossRoom
 
-    // Augmenter la taille des cases
-    int roomWidth = 11;  // Anciennement 20
-    int roomHeight = 11;  // Anciennement 12
+    int roomWidth = 11;
+    int roomHeight = 11;
 
     int gridSizeX = 20;
     int gridSizeY = 20;
@@ -25,6 +27,16 @@ public class RoomManager : MonoBehaviour
     private int roomCount;
 
     public bool generationComplete = false;
+    
+    // Store references to special rooms
+    private GameObject spawnRoom = null;
+    private GameObject bossRoom = null;
+
+    // Method to get the list of rooms
+    public List<GameObject> GetRooms()
+    {
+        return roomObjects;
+    }
 
     private void Start()
     {
@@ -37,7 +49,7 @@ public class RoomManager : MonoBehaviour
 
     private void Update()
     {
-        if (roomQueue.Count > 0 && roomCount < maxRooms && !generationComplete)
+        if (roomQueue.Count > 0 && roomCount < maxRooms - 1 && !generationComplete)
         {
             Vector2Int roomIndex = roomQueue.Dequeue();
             int gridX = roomIndex.x;
@@ -48,18 +60,34 @@ public class RoomManager : MonoBehaviour
             TryGenerateRoom(new Vector2Int(gridX, gridY + 1));
             TryGenerateRoom(new Vector2Int(gridX, gridY - 1));
         }
-        else if (roomCount < minRooms)
+        else if (roomCount < minRooms && !generationComplete)
         {
             Debug.Log("roomCount was less than the minimum amount of rooms. trying again");
             RegenerateRooms();
         }
         else if (!generationComplete)
         {
-            Debug.Log($"Generation complete, {roomCount} rooms created");
+            Debug.Log($"RoomManager: Generation complete, {roomCount} rooms created");
             generationComplete = true;
 
             // Start the checker for rooms with exactly 2 adjacent rooms
             CheckAndReplaceRooms();
+
+            // Add BossRoom at the end
+            bool bossRoomAdded = AddBossRoom();
+            
+            // If we couldn't add a boss room, regenerate
+            if (!bossRoomAdded)
+            {
+                Debug.Log("Failed to add boss room, regenerating level");
+                generationComplete = false;
+                RegenerateRooms();
+            }
+            else
+            {
+                // Verify that both special rooms exist
+                EnsureSpecialRoomsExist();
+            }
         }
     }
 
@@ -70,10 +98,15 @@ public class RoomManager : MonoBehaviour
         int y = roomIndex.y;
         roomGrid[x, y] = 1;
         roomCount++;
-        var initialRoom = Instantiate(squareRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
-        initialRoom.name = $"Room-{roomCount}";
+        
+        // Create the spawn room
+        var initialRoom = Instantiate(spawnRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        initialRoom.name = "SpawnRoom";
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
         roomObjects.Add(initialRoom);
+        spawnRoom = initialRoom; // Store reference to spawn room
+        
+        Debug.Log($"SpawnRoom created at position: {GetPositionFromGridIndex(roomIndex)}");
     }
 
     private bool TryGenerateRoom(Vector2Int roomIndex)
@@ -81,7 +114,19 @@ public class RoomManager : MonoBehaviour
         int x = roomIndex.x;
         int y = roomIndex.y;
 
-        if (roomCount >= maxRooms)
+        if (x < 0 || x >= gridSizeX || y < 0 || y >= gridSizeY)
+        {
+            Debug.Log($"Room index out of bounds: {roomIndex}");
+            return false;
+        }
+
+        if (roomGrid[x, y] != 0)
+        {
+            Debug.Log($"Room already exists at {roomIndex}");
+            return false;
+        }
+
+        if (roomCount >= maxRooms - 1)
         {
             Debug.Log($"Max rooms reached: {roomCount}");
             return false;
@@ -128,18 +173,60 @@ public class RoomManager : MonoBehaviour
 
     private void RegenerateRooms()
     {
-        roomObjects.ForEach(Destroy);
+        Debug.Log("Regenerating rooms...");
+        
+        // Destroy all existing rooms
+        foreach (var room in roomObjects)
+        {
+            Destroy(room);
+        }
         roomObjects.Clear();
+        spawnRoom = null;
+        bossRoom = null;
+
+        // Reset the room grid and queue
         roomGrid = new int[gridSizeX, gridSizeY];
         roomQueue.Clear();
         roomCount = 0;
         generationComplete = false;
 
+        // Recreate the SpawnRoom
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
+        
+        Debug.Log("SpawnRoom recreated at the start of regeneration.");
     }
 
-    void OpenDoors(GameObject room, int x, int y)
+    private void EnsureSpecialRoomsExist()
+    {
+        bool spawnRoomExists = false;
+        bool bossRoomExists = false;
+        
+        foreach (var room in roomObjects)
+        {
+            if (room.name == "SpawnRoom") spawnRoomExists = true;
+            if (room.name == "BossRoom") bossRoomExists = true;
+        }
+
+        if (!spawnRoomExists || !bossRoomExists)
+        {
+            Debug.LogWarning($"Special rooms missing: SpawnRoom exists: {spawnRoomExists}, BossRoom exists: {bossRoomExists}");
+            
+            // If the generation is complete but we're missing special rooms, regenerate
+            if (generationComplete)
+            {
+                Debug.Log("Regenerating due to missing special rooms");
+                generationComplete = false;
+                RegenerateRooms();
+            }
+        }
+        else
+        {
+            Debug.Log("Both special rooms exist in the generated level");
+        }
+    }
+
+    private void OpenDoors(GameObject room, int x, int y)
     {
         Room newRoomScript = room.GetComponent<Room>();
 
@@ -151,26 +238,26 @@ public class RoomManager : MonoBehaviour
         if (x > 0 && roomGrid[x - 1, y] != 0)
         {
             newRoomScript.OpenDoor(Vector2Int.left);
-            leftRoomScript.OpenDoor(Vector2Int.right);
+            if (leftRoomScript != null) leftRoomScript.OpenDoor(Vector2Int.right);
         }
         if (x < gridSizeX - 1 && roomGrid[x + 1, y] != 0)
         {
             newRoomScript.OpenDoor(Vector2Int.right);
-            rightRoomScript.OpenDoor(Vector2Int.left);
+            if (rightRoomScript != null) rightRoomScript.OpenDoor(Vector2Int.left);
         }
         if (y > 0 && roomGrid[x, y - 1] != 0)
         {
             newRoomScript.OpenDoor(Vector2Int.down);
-            bottomRoomScript.OpenDoor(Vector2Int.up);
+            if (bottomRoomScript != null) bottomRoomScript.OpenDoor(Vector2Int.up);
         }
         if (y < gridSizeY - 1 && roomGrid[x, y + 1] != 0)
         {
             newRoomScript.OpenDoor(Vector2Int.up);
-            topRoomScript.OpenDoor(Vector2Int.down);
+            if (topRoomScript != null) topRoomScript.OpenDoor(Vector2Int.down);
         }
     }
 
-    Room GetRoomScriptAt(Vector2Int index)
+    private Room GetRoomScriptAt(Vector2Int index)
     {
         GameObject roomObject = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == index);
         if (roomObject != null)
@@ -218,6 +305,10 @@ public class RoomManager : MonoBehaviour
     {
         foreach (var roomObject in roomObjects.ToArray())
         {
+            // Skip replacing special rooms
+            if (roomObject.name == "SpawnRoom" || roomObject.name == "BossRoom")
+                continue;
+                
             Room roomScript = roomObject.GetComponent<Room>();
             Vector2Int roomIndex = roomScript.RoomIndex;
             int adjacentCount = CountAdjacentRooms(roomIndex);
@@ -272,5 +363,143 @@ public class RoomManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool AddBossRoom()
+    {
+        // Find a suitable location for the BossRoom
+        Vector2Int bossRoomIndex = FindBossRoomLocation();
+        if (bossRoomIndex != Vector2Int.zero)
+        {
+            // Remove the existing room at the BossRoom location
+            GameObject existingRoom = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == bossRoomIndex);
+            if (existingRoom != null)
+            {
+                Debug.Log($"Replacing room {existingRoom.name} with BossRoom");
+                roomObjects.Remove(existingRoom);
+                Destroy(existingRoom);
+            }
+
+            // Create the boss room
+            var bossRoom = Instantiate(bossRoomPrefab, GetPositionFromGridIndex(bossRoomIndex), Quaternion.identity);
+            bossRoom.GetComponent<Room>().RoomIndex = bossRoomIndex;
+            bossRoom.name = "BossRoom";
+            roomObjects.Add(bossRoom);
+            this.bossRoom = bossRoom; // Store reference to boss room
+            
+            Debug.Log($"BossRoom created at position: {GetPositionFromGridIndex(bossRoomIndex)}");
+
+            // Open the doors for the boss room.
+            OpenDoors(bossRoom, bossRoomIndex.x, bossRoomIndex.y);
+            
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning("Failed to place BossRoom - no suitable location found");
+            return false;
+        }
+    }
+
+    private Vector2Int FindBossRoomLocation()
+    {
+        // Find the SpawnRoom's location
+        Vector2Int spawnRoomIndex = Vector2Int.zero;
+        foreach (var roomObject in roomObjects)
+        {
+            if (roomObject.name == "SpawnRoom")
+            {
+                spawnRoomIndex = roomObject.GetComponent<Room>().RoomIndex;
+                break;
+            }
+        }
+        
+        Debug.Log($"SpawnRoom location: {spawnRoomIndex}");
+
+        // If we couldn't find the spawn room, return zero
+        if (spawnRoomIndex == Vector2Int.zero)
+        {
+            Debug.LogError("Couldn't find SpawnRoom when trying to place BossRoom");
+            return Vector2Int.zero;
+        }
+
+        Vector2Int bestRoomIndex = Vector2Int.zero;
+        float maxDistance = 0;
+
+        // First, try to find a room with exactly one adjacent room
+        foreach (var roomObject in roomObjects)
+        {
+            // Skip if this is already the SpawnRoom or BossRoom
+            if (roomObject.name == "SpawnRoom" || roomObject.name == "BossRoom")
+                continue;
+
+            Room roomScript = roomObject.GetComponent<Room>();
+            Vector2Int roomIndex = roomScript.RoomIndex;
+
+            // Count adjacent rooms - we want rooms with only one connection
+            int adjacentCount = CountAdjacentRooms(roomIndex);
+
+            // Calculate distance from spawn room
+            float distance = Vector2Int.Distance(roomIndex, spawnRoomIndex);
+            
+            Debug.Log($"Checking room at {roomIndex}: Adjacent={adjacentCount}, Distance={distance}");
+
+            // Find the farthest dead-end room that meets our distance requirement
+            if (adjacentCount == 1 && distance > maxDistance && distance >= minDistanceBetweenSpecialRooms)
+            {
+                maxDistance = distance;
+                bestRoomIndex = roomIndex;
+            }
+        }
+
+        // If we found a suitable room with exactly one adjacent room
+        if (bestRoomIndex != Vector2Int.zero)
+        {
+            Debug.Log($"Found BossRoom location at {bestRoomIndex}, Distance: {maxDistance}");
+            return bestRoomIndex;
+        }
+
+        Debug.Log("No room with exactly one adjacent room found. Falling back to any valid room.");
+
+        // Fallback: Find any room that meets the minimum distance requirement
+        maxDistance = 0;
+        foreach (var roomObject in roomObjects)
+        {
+            // Skip if this is already the SpawnRoom or BossRoom
+            if (roomObject.name == "SpawnRoom" || roomObject.name == "BossRoom")
+                continue;
+
+            Room roomScript = roomObject.GetComponent<Room>();
+            Vector2Int roomIndex = roomScript.RoomIndex;
+
+            // Calculate distance from spawn room
+            float distance = Vector2Int.Distance(roomIndex, spawnRoomIndex);
+            
+            Debug.Log($"Checking fallback room at {roomIndex}: Distance={distance}");
+
+            // Find the farthest room that meets our distance requirement
+            if (distance > maxDistance)
+            {
+                maxDistance = distance;
+                bestRoomIndex = roomIndex;
+            }
+        }
+
+        // If we found any room that's far enough, use it
+        if (bestRoomIndex != Vector2Int.zero && maxDistance >= minDistanceBetweenSpecialRooms)
+        {
+            Debug.Log($"Placing BossRoom at fallback room: {bestRoomIndex}, Distance: {maxDistance}");
+            return bestRoomIndex;
+        }
+
+        // Last resort: If we can't find a room that's far enough, use the farthest room we found
+        if (bestRoomIndex != Vector2Int.zero)
+        {
+            Debug.LogWarning($"Using closest available room for BossRoom: {bestRoomIndex}, Distance: {maxDistance}");
+            return bestRoomIndex;
+        }
+
+        Debug.Log("No valid BossRoom location found");
+        return Vector2Int.zero;
     }
 }

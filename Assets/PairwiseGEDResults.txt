@@ -1,0 +1,544 @@
+Pairwise Graph Edit Distance (GED) Results
+==========================================
+
+Comparison 1: Layout 1 vs. Layout 2
+Total Nodes of Layout 1: 9
+Total Edges of Layout 1: 18
+Total Nodes of Layout 2: 11
+Total Edges of Layout 2: 22
+Node Insertions: 5
+Node Deletions: 3
+Edge Insertions: 15
+Edge Deletions: 11
+GED Calculation: 5 + 3 + 15 + 11 = 34
+Total GED Score: 34
+
+Comparison 2: Layout 1 vs. Layout 3
+Total Nodes of Layout 1: 9
+Total Edges of Layout 1: 18
+Total Nodes of Layout 3: 13
+Total Edges of Layout 3: 26
+Node Insertions: 4
+Node Deletions: 0
+Edge Insertions: 15
+Edge Deletions: 7
+GED Calculation: 4 + 0 + 15 + 7 = 26
+Total GED Score: 26
+
+Comparison 3: Layout 1 vs. Layout 4
+Total Nodes of Layout 1: 9
+Total Edges of Layout 1: 18
+Total Nodes of Layout 4: 11
+Total Edges of Layout 4: 22
+Node Insertions: 6
+Node Deletions: 4
+Edge Insertions: 20
+Edge Deletions: 16
+GED Calculation: 6 + 4 + 20 + 16 = 46
+Total GED Score: 46
+
+Comparison 4: Layout 1 vs. Layout 5
+Total Nodes of Layout 1: 9
+Total Edges of Layout 1: 18
+Total Nodes of Layout 5: 11
+Total Edges of Layout 5: 22
+Node Insertions: 3
+Node Deletions: 1
+Edge Insertions: 17
+Edge Deletions: 13
+GED Calculation: 3 + 1 + 17 + 13 = 34
+Total GED Score: 34
+
+Comparison 5: Layout 1 vs. Layout 6
+Total Nodes of Layout 1: 9
+Total Edges of Layout 1: 18
+Total Nodes of Layout 6: 11
+Total Edges of Layout 6: 20
+Node Insertions: 3
+Node Deletions: 1
+Edge Insertions: 13
+Edge Deletions: 11
+GED Calculation: 3 + 1 + 13 + 11 = 28
+Total GED Score: 28
+
+Comparison 6: Layout 1 vs. Layout 7
+Total Nodes of Layout 1: 9
+Total Edges of Layout 1: 18
+Total Nodes of Layout 7: 11
+Total Edges of Layout 7: 22
+Node Insertions: 4
+Node Deletions: 2
+Edge Insertions: 15
+Edge Deletions: 11
+GED Calculation: 4 + 2 + 15 + 11 = 32
+Total GED Score: 32
+
+Comparison 7: Layout 1 vs. Layout 8
+Total Nodes of Layout 1: 9
+Total Edges of Layout 1: 18
+Total Nodes of Layout 8: 9
+Total Edges of Layout 8: 18
+Node Insertions: 2
+Node Deletions: 2
+Edge Insertions: 9
+Edge Deletions: 9
+GED Calculation: 2 + 2 + 9 + 9 = 22
+Total GED Score: 22
+
+Comparison 8: Layout 1 vs. Layout 9
+Total Nodes of Layout 1: 9
+Total Edges of Layout 1: 18
+Total Nodes of Layout 9: 8
+Total Edges of Layout 9: 14
+Node Insertions: 2
+Node Deletions: 3
+Edge Insertions: 9
+Edge Deletions: 13
+GED Calculation: 2 + 3 + 9 + 13 = 27
+Total GED Score: 27
+
+Comparison 9: Layout 1 vs. Layout 10
+Total Nodes of Layout 1: 9
+Total Edges of Layout 1: 18
+Total Nodes of Layout 10: 9
+Total Edges of Layout 10: 16
+Node Insertions: 4
+Node Deletions: 4
+Edge Insertions: 14
+Edge Deletions: 16
+GED Calculation: 4 + 4 + 14 + 16 = 38
+Total GED Score: 38
+
+Comparison 10: Layout 2 vs. Layout 3
+Total Nodes of Layout 2: 11
+Total Edges of Layout 2: 22
+Total Nodes of Layout 3: 13
+Total Edges of Layout 3: 26
+Node Insertions: 4
+Node Deletions: 2
+Edge Insertions: 21
+Edge Deletions: 17
+GED Calculation: 4 + 2 + 21 + 17 = 44
+Total GED Score: 44
+
+Comparison 11: Layout 2 vs. Layout 4
+Total Nodes of Layout 2: 11
+Total Edges of Layout 2: 22
+Total Nodes of Layout 4: 11
+Total Edges of Layout 4: 22
+Node Insertions: 2
+Node Deletions: 2
+Edge Insertions: 18
+Edge Deletions: 18
+GED Calculation: 2 + 2 + 18 + 18 = 40
+Total GED Score: 40
+
+Comparison 12: Layout 2 vs. Layout 5
+Total Nodes of Layout 2: 11
+Total Edges of Layout 2: 22
+Total Nodes of Layout 5: 11
+Total Edges of Layout 5: 22
+Node Insertions: 5
+Node Deletions: 5
+Edge Insertions: 19
+Edge Deletions: 19
+GED Calculation: 5 + 5 + 19 + 19 = 48
+Total GED Score: 48
+
+Comparison 13: Layout 2 vs. Layout 6
+Total Nodes of Layout 2: 11
+Total Edges of Layout 2: 22
+Total Nodes of Layout 6: 11
+Total Edges of Layout 6: 20
+Node Insertions: 3
+Node Deletions: 3
+Edge Insertions: 14
+Edge Deletions: 16
+GED Calculation: 3 + 3 + 14 + 16 = 36
+Total GED Score: 36
+
+Comparison 14: Layout 2 vs. Layout 7
+Total Nodes of Layout 2: 11
+Total Edges of Layout 2: 22
+Total Nodes of Layout 7: 11
+Total Edges of Layout 7: 22
+Node Insertions: 3
+Node Deletions: 3
+Edge Insertions: 14
+Edge Deletions: 14
+GED Calculation: 3 + 3 + 14 + 14 = 34
+Total GED Score: 34
+
+Comparison 15: Layout 2 vs. Layout 8
+Total Nodes of Layout 2: 11
+Total Edges of Layout 2: 22
+Total Nodes of Layout 8: 9
+Total Edges of Layout 8: 18
+Node Insertions: 3
+Node Deletions: 5
+Edge Insertions: 10
+Edge Deletions: 14
+GED Calculation: 3 + 5 + 10 + 14 = 32
+Total GED Score: 32
+
+Comparison 16: Layout 2 vs. Layout 9
+Total Nodes of Layout 2: 11
+Total Edges of Layout 2: 22
+Total Nodes of Layout 9: 8
+Total Edges of Layout 9: 14
+Node Insertions: 3
+Node Deletions: 6
+Edge Insertions: 8
+Edge Deletions: 16
+GED Calculation: 3 + 6 + 8 + 16 = 33
+Total GED Score: 33
+
+Comparison 17: Layout 2 vs. Layout 10
+Total Nodes of Layout 2: 11
+Total Edges of Layout 2: 22
+Total Nodes of Layout 10: 9
+Total Edges of Layout 10: 16
+Node Insertions: 1
+Node Deletions: 3
+Edge Insertions: 12
+Edge Deletions: 18
+GED Calculation: 1 + 3 + 12 + 18 = 34
+Total GED Score: 34
+
+Comparison 18: Layout 3 vs. Layout 4
+Total Nodes of Layout 3: 13
+Total Edges of Layout 3: 26
+Total Nodes of Layout 4: 11
+Total Edges of Layout 4: 22
+Node Insertions: 3
+Node Deletions: 5
+Edge Insertions: 18
+Edge Deletions: 22
+GED Calculation: 3 + 5 + 18 + 22 = 48
+Total GED Score: 48
+
+Comparison 19: Layout 3 vs. Layout 5
+Total Nodes of Layout 3: 13
+Total Edges of Layout 3: 26
+Total Nodes of Layout 5: 11
+Total Edges of Layout 5: 22
+Node Insertions: 1
+Node Deletions: 3
+Edge Insertions: 12
+Edge Deletions: 16
+GED Calculation: 1 + 3 + 12 + 16 = 32
+Total GED Score: 32
+
+Comparison 20: Layout 3 vs. Layout 6
+Total Nodes of Layout 3: 13
+Total Edges of Layout 3: 26
+Total Nodes of Layout 6: 11
+Total Edges of Layout 6: 20
+Node Insertions: 2
+Node Deletions: 4
+Edge Insertions: 13
+Edge Deletions: 19
+GED Calculation: 2 + 4 + 13 + 19 = 38
+Total GED Score: 38
+
+Comparison 21: Layout 3 vs. Layout 7
+Total Nodes of Layout 3: 13
+Total Edges of Layout 3: 26
+Total Nodes of Layout 7: 11
+Total Edges of Layout 7: 22
+Node Insertions: 1
+Node Deletions: 3
+Edge Insertions: 15
+Edge Deletions: 19
+GED Calculation: 1 + 3 + 15 + 19 = 38
+Total GED Score: 38
+
+Comparison 22: Layout 3 vs. Layout 8
+Total Nodes of Layout 3: 13
+Total Edges of Layout 3: 26
+Total Nodes of Layout 8: 9
+Total Edges of Layout 8: 18
+Node Insertions: 1
+Node Deletions: 5
+Edge Insertions: 11
+Edge Deletions: 19
+GED Calculation: 1 + 5 + 11 + 19 = 36
+Total GED Score: 36
+
+Comparison 23: Layout 3 vs. Layout 9
+Total Nodes of Layout 3: 13
+Total Edges of Layout 3: 26
+Total Nodes of Layout 9: 8
+Total Edges of Layout 9: 14
+Node Insertions: 0
+Node Deletions: 5
+Edge Insertions: 3
+Edge Deletions: 15
+GED Calculation: 0 + 5 + 3 + 15 = 23
+Total GED Score: 23
+
+Comparison 24: Layout 3 vs. Layout 10
+Total Nodes of Layout 3: 13
+Total Edges of Layout 3: 26
+Total Nodes of Layout 10: 9
+Total Edges of Layout 10: 16
+Node Insertions: 1
+Node Deletions: 5
+Edge Insertions: 12
+Edge Deletions: 22
+GED Calculation: 1 + 5 + 12 + 22 = 40
+Total GED Score: 40
+
+Comparison 25: Layout 4 vs. Layout 5
+Total Nodes of Layout 4: 11
+Total Edges of Layout 4: 22
+Total Nodes of Layout 5: 11
+Total Edges of Layout 5: 22
+Node Insertions: 5
+Node Deletions: 5
+Edge Insertions: 20
+Edge Deletions: 20
+GED Calculation: 5 + 5 + 20 + 20 = 50
+Total GED Score: 50
+
+Comparison 26: Layout 4 vs. Layout 6
+Total Nodes of Layout 4: 11
+Total Edges of Layout 4: 22
+Total Nodes of Layout 6: 11
+Total Edges of Layout 6: 20
+Node Insertions: 4
+Node Deletions: 4
+Edge Insertions: 14
+Edge Deletions: 16
+GED Calculation: 4 + 4 + 14 + 16 = 38
+Total GED Score: 38
+
+Comparison 27: Layout 4 vs. Layout 7
+Total Nodes of Layout 4: 11
+Total Edges of Layout 4: 22
+Total Nodes of Layout 7: 11
+Total Edges of Layout 7: 22
+Node Insertions: 3
+Node Deletions: 3
+Edge Insertions: 16
+Edge Deletions: 16
+GED Calculation: 3 + 3 + 16 + 16 = 38
+Total GED Score: 38
+
+Comparison 28: Layout 4 vs. Layout 8
+Total Nodes of Layout 4: 11
+Total Edges of Layout 4: 22
+Total Nodes of Layout 8: 9
+Total Edges of Layout 8: 18
+Node Insertions: 4
+Node Deletions: 6
+Edge Insertions: 16
+Edge Deletions: 20
+GED Calculation: 4 + 6 + 16 + 20 = 46
+Total GED Score: 46
+
+Comparison 29: Layout 4 vs. Layout 9
+Total Nodes of Layout 4: 11
+Total Edges of Layout 4: 22
+Total Nodes of Layout 9: 8
+Total Edges of Layout 9: 14
+Node Insertions: 3
+Node Deletions: 6
+Edge Insertions: 12
+Edge Deletions: 20
+GED Calculation: 3 + 6 + 12 + 20 = 41
+Total GED Score: 41
+
+Comparison 30: Layout 4 vs. Layout 10
+Total Nodes of Layout 4: 11
+Total Edges of Layout 4: 22
+Total Nodes of Layout 10: 9
+Total Edges of Layout 10: 16
+Node Insertions: 2
+Node Deletions: 4
+Edge Insertions: 14
+Edge Deletions: 20
+GED Calculation: 2 + 4 + 14 + 20 = 40
+Total GED Score: 40
+
+Comparison 31: Layout 5 vs. Layout 6
+Total Nodes of Layout 5: 11
+Total Edges of Layout 5: 22
+Total Nodes of Layout 6: 11
+Total Edges of Layout 6: 20
+Node Insertions: 2
+Node Deletions: 2
+Edge Insertions: 17
+Edge Deletions: 19
+GED Calculation: 2 + 2 + 17 + 19 = 40
+Total GED Score: 40
+
+Comparison 32: Layout 5 vs. Layout 7
+Total Nodes of Layout 5: 11
+Total Edges of Layout 5: 22
+Total Nodes of Layout 7: 11
+Total Edges of Layout 7: 22
+Node Insertions: 3
+Node Deletions: 3
+Edge Insertions: 11
+Edge Deletions: 11
+GED Calculation: 3 + 3 + 11 + 11 = 28
+Total GED Score: 28
+
+Comparison 33: Layout 5 vs. Layout 8
+Total Nodes of Layout 5: 11
+Total Edges of Layout 5: 22
+Total Nodes of Layout 8: 9
+Total Edges of Layout 8: 18
+Node Insertions: 2
+Node Deletions: 4
+Edge Insertions: 11
+Edge Deletions: 15
+GED Calculation: 2 + 4 + 11 + 15 = 32
+Total GED Score: 32
+
+Comparison 34: Layout 5 vs. Layout 9
+Total Nodes of Layout 5: 11
+Total Edges of Layout 5: 22
+Total Nodes of Layout 9: 8
+Total Edges of Layout 9: 14
+Node Insertions: 2
+Node Deletions: 5
+Edge Insertions: 11
+Edge Deletions: 19
+GED Calculation: 2 + 5 + 11 + 19 = 37
+Total GED Score: 37
+
+Comparison 35: Layout 5 vs. Layout 10
+Total Nodes of Layout 5: 11
+Total Edges of Layout 5: 22
+Total Nodes of Layout 10: 9
+Total Edges of Layout 10: 16
+Node Insertions: 3
+Node Deletions: 5
+Edge Insertions: 14
+Edge Deletions: 20
+GED Calculation: 3 + 5 + 14 + 20 = 42
+Total GED Score: 42
+
+Comparison 36: Layout 6 vs. Layout 7
+Total Nodes of Layout 6: 11
+Total Edges of Layout 6: 20
+Total Nodes of Layout 7: 11
+Total Edges of Layout 7: 22
+Node Insertions: 3
+Node Deletions: 3
+Edge Insertions: 14
+Edge Deletions: 12
+GED Calculation: 3 + 3 + 14 + 12 = 32
+Total GED Score: 32
+
+Comparison 37: Layout 6 vs. Layout 8
+Total Nodes of Layout 6: 11
+Total Edges of Layout 6: 20
+Total Nodes of Layout 8: 9
+Total Edges of Layout 8: 18
+Node Insertions: 1
+Node Deletions: 3
+Edge Insertions: 10
+Edge Deletions: 12
+GED Calculation: 1 + 3 + 10 + 12 = 26
+Total GED Score: 26
+
+Comparison 38: Layout 6 vs. Layout 9
+Total Nodes of Layout 6: 11
+Total Edges of Layout 6: 20
+Total Nodes of Layout 9: 8
+Total Edges of Layout 9: 14
+Node Insertions: 3
+Node Deletions: 6
+Edge Insertions: 10
+Edge Deletions: 16
+GED Calculation: 3 + 6 + 10 + 16 = 35
+Total GED Score: 35
+
+Comparison 39: Layout 6 vs. Layout 10
+Total Nodes of Layout 6: 11
+Total Edges of Layout 6: 20
+Total Nodes of Layout 10: 9
+Total Edges of Layout 10: 16
+Node Insertions: 3
+Node Deletions: 5
+Edge Insertions: 14
+Edge Deletions: 18
+GED Calculation: 3 + 5 + 14 + 18 = 40
+Total GED Score: 40
+
+Comparison 40: Layout 7 vs. Layout 8
+Total Nodes of Layout 7: 11
+Total Edges of Layout 7: 22
+Total Nodes of Layout 8: 9
+Total Edges of Layout 8: 18
+Node Insertions: 1
+Node Deletions: 3
+Edge Insertions: 6
+Edge Deletions: 10
+GED Calculation: 1 + 3 + 6 + 10 = 20
+Total GED Score: 20
+
+Comparison 41: Layout 7 vs. Layout 9
+Total Nodes of Layout 7: 11
+Total Edges of Layout 7: 22
+Total Nodes of Layout 9: 8
+Total Edges of Layout 9: 14
+Node Insertions: 2
+Node Deletions: 5
+Edge Insertions: 10
+Edge Deletions: 18
+GED Calculation: 2 + 5 + 10 + 18 = 35
+Total GED Score: 35
+
+Comparison 42: Layout 7 vs. Layout 10
+Total Nodes of Layout 7: 11
+Total Edges of Layout 7: 22
+Total Nodes of Layout 10: 9
+Total Edges of Layout 10: 16
+Node Insertions: 3
+Node Deletions: 5
+Edge Insertions: 12
+Edge Deletions: 18
+GED Calculation: 3 + 5 + 12 + 18 = 38
+Total GED Score: 38
+
+Comparison 43: Layout 8 vs. Layout 9
+Total Nodes of Layout 8: 9
+Total Edges of Layout 8: 18
+Total Nodes of Layout 9: 8
+Total Edges of Layout 9: 14
+Node Insertions: 2
+Node Deletions: 3
+Edge Insertions: 10
+Edge Deletions: 14
+GED Calculation: 2 + 3 + 10 + 14 = 29
+Total GED Score: 29
+
+Comparison 44: Layout 8 vs. Layout 10
+Total Nodes of Layout 8: 9
+Total Edges of Layout 8: 18
+Total Nodes of Layout 10: 9
+Total Edges of Layout 10: 16
+Node Insertions: 5
+Node Deletions: 5
+Edge Insertions: 14
+Edge Deletions: 16
+GED Calculation: 5 + 5 + 14 + 16 = 40
+Total GED Score: 40
+
+Comparison 45: Layout 9 vs. Layout 10
+Total Nodes of Layout 9: 8
+Total Edges of Layout 9: 14
+Total Nodes of Layout 10: 9
+Total Edges of Layout 10: 16
+Node Insertions: 5
+Node Deletions: 4
+Edge Insertions: 14
+Edge Deletions: 12
+GED Calculation: 5 + 4 + 14 + 12 = 35
+Total GED Score: 35
+
+Total comparisons: 45

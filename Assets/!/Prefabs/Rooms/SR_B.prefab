@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6151471006775082188}
-  - component: {fileID: 5250286012799838364}
+  - component: {fileID: 2149692651727749720}
   m_Layer: 0
   m_Name: TileGenerator
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4895940830705049737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5250286012799838364
+--- !u!114 &2149692651727749720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a527a5162af6f4f98c7555873eba32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dimensions: 7
+  roomWidth: 7
+  roomHeight: 7
   tileObjects:
   - {fileID: -6731219493097569568, guid: 06bbb6dc0167d00419ce66d061f091c8, type: 3}
   - {fileID: 4851959026201765438, guid: 2eaf5e89dcbe4a54d974b964c7e11229, type: 3}
@@ -224,7 +225,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2008560856168711747}
-  - component: {fileID: 4708613487190158486}
   m_Layer: 0
   m_Name: SR_B
   m_TagString: Untagged
@@ -248,27 +248,6 @@ Transform:
   - {fileID: 4895940830705049737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4708613487190158486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8054111723407151122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e748f426708c5bb45a763d4654f967b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomType: 1
-  upNeighbours: []
-  rightNeighbours: []
-  downNeighbours:
-  - {fileID: 8054111723407151122, guid: 17ff5eaed604b0e4993625c369253cf8, type: 3}
-  - {fileID: 8054111723407151122, guid: 339cb7c3972345d4a99ef3f8f0ea7cfd, type: 3}
-  - {fileID: 8054111723407151122, guid: 1a1ab19f4007815449947fbdff86e8e4, type: 3}
-  - {fileID: 8054111723407151122, guid: 406493420e1216f4b88961a47c44f501, type: 3}
-  leftNeighbours: []
 --- !u!1001 &291311217579091887
 PrefabInstance:
   m_ObjectHideFlags: 0
