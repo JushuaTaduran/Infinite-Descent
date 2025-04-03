@@ -6,6 +6,35 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+=======
+    path: Assets/!/Scenes/Game/Game.unity
+    guid: f9bb2bca90f013b4d88fe788af63359f
+  - enabled: 1
+    path: Assets/!/Scenes/Game/DevMode/WFCTest.unity
+    guid: 655d15b3dfef5b043a8d25f9a85dbd2e
+  - enabled: 1
+    path: Assets/!/Scenes/Game/PlayScenes/NormalGeneration.unity
+    guid: e23ceea72634b1a49974e51df039138f
+  - enabled: 1
+    path: Assets/!/Scenes/Game/PlayScenes/IcyGeneration.unity
+    guid: adf397c0ed886014580c8fd071523c53
+  - enabled: 1
+    path: Assets/!/Scenes/Game/PlayScenes/ForestGeneration.unity
+    guid: 3b5dc2d26f5a89042ae2147870e6a54d
+  - enabled: 1
+    path: Assets/!/Scenes/Game/PlayScenes/MixedGeneration.unity
+    guid: cf1c6d36cf0bc1f429ad35c0c259b106
+  - enabled: 1
+    path: Assets/!/Scenes/Game/DevMode/GANTesting.unity
+    guid: 5bc13847d88d2b4448812a63d779cae3
+  - enabled: 1
+    path: Assets/!/Scenes/Game/DevMode/DungeonGenerationTesting.unity
+    guid: a9e06b5f018b09346a27755b276fa854
+  - enabled: 1
+    path: Assets/!/Scenes/Game/DeathLoad.unity
+    guid: fa070a539335da543a4b935a8ba6b057
+>>>>>>> Stashed changes
   m_configObjects: {}

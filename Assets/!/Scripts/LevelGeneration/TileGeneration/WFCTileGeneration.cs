@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+<<<<<<< Updated upstream
 using System.Linq;
 using Unity.Mathematics;
+=======
+>>>>>>> Stashed changes
 using UnityEngine;
 
 public class WFCTileGeneration : MonoBehaviour
@@ -20,14 +23,36 @@ public class WFCTileGeneration : MonoBehaviour
     {
         gridComponents = new List<Cell>();
         roomManager = FindObjectOfType<RoomManager>();
+<<<<<<< Updated upstream
+=======
+        mixRoomManager = FindObjectOfType<MixRoomManager>();
+        gedRoomManager = FindObjectOfType<GEDRoomManager>();
+
+        if (roomManager == null && mixRoomManager == null && gedRoomManager == null)
+        {
+            return;
+        }
+
+>>>>>>> Stashed changes
         StartCoroutine(WaitForGenerationComplete());
     }
 
+    // Waits for room generation to complete before initializing the grid
     IEnumerator WaitForGenerationComplete()
     {
         // Wait until generationComplete is true
         while (!roomManager.generationComplete)
         {
+<<<<<<< Updated upstream
+=======
+            if (roomManager != null)
+                generationComplete = roomManager.generationComplete;
+            else if (mixRoomManager != null)
+                generationComplete = mixRoomManager.generationComplete;
+            else if (gedRoomManager != null)
+                generationComplete = gedRoomManager.generationComplete;
+
+>>>>>>> Stashed changes
             yield return null;
         }
 
@@ -35,6 +60,7 @@ public class WFCTileGeneration : MonoBehaviour
         InitializeGrid();
     }
 
+    // Initializes the grid with cells
     void InitializeGrid()
     {
         // Get the position of the GameObject holding this script and add 0.5 to x and y
@@ -62,6 +88,24 @@ public class WFCTileGeneration : MonoBehaviour
         StartCoroutine(CheckEntropy());
     }
 
+<<<<<<< Updated upstream
+=======
+    // Clears the grid and resets iterations
+    public void ClearGrid()
+    {
+        foreach (var cell in gridComponents)
+        {
+            if (cell != null)
+            {
+                Destroy(cell.gameObject);
+            }
+        }
+        gridComponents.Clear();
+        iterations = 0;
+    }
+
+    // Checks and collapses cells with the lowest entropy
+>>>>>>> Stashed changes
     IEnumerator CheckEntropy()
     {
         List<Cell> tempGrid = new List<Cell>(gridComponents);
@@ -92,6 +136,7 @@ public class WFCTileGeneration : MonoBehaviour
         CollapseCell(tempGrid);
     }
 
+    // Collapses a random cell and selects a tile
     void CollapseCell(List<Cell> tempGrid)
     {
         int randIndex = UnityEngine.Random.Range(0, tempGrid.Count);
@@ -108,6 +153,7 @@ public class WFCTileGeneration : MonoBehaviour
         UpdateGeneration();
     }
 
+    // Updates the grid and propagates constraints
     void UpdateGeneration()
     {
         List<Cell> newGenerationCell = new List<Cell>(gridComponents);
@@ -119,7 +165,6 @@ public class WFCTileGeneration : MonoBehaviour
                 var index = x + y * roomWidth;
                 if (gridComponents[index].collapsed)
                 {
-                    Debug.Log("called");
                     newGenerationCell[index] = gridComponents[index];
                 }
                 else
@@ -220,6 +265,7 @@ public class WFCTileGeneration : MonoBehaviour
 
     }
 
+    // Filters invalid tiles from the options list
     void CheckValidity(List<Tile> optionList, List<Tile> validOption)
     {
         for (int x = optionList.Count - 1; x >= 0; x--)

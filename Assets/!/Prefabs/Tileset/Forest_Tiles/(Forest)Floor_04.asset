@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f568d4c67ca19f54ab0935b008aa6291, type: 3}
+  m_Name: (Forest)Floor_04
+  m_EditorClassIdentifier: 
+  inputImages:
+  - {fileID: 21300000, guid: f55acb4c578ed794db332e73e10c7e57, type: 3}
+  - {fileID: 21300000, guid: a165dff3aebf26742a7c3d1094c64c6e, type: 3}
+  - {fileID: 21300000, guid: 25b176b7e2c4ec640b79db65baf46a8d, type: 3}
+  sprite: {fileID: 21300000, guid: 31d9761eecf60094eb49ac02a694ff11, type: 3}
+  sortingOrder: 0
+  sortingLayerName: Default
